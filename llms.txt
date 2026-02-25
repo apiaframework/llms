@@ -1,0 +1,5 @@
+---
+layout: none
+permalink: /llms.txt
+---
+{% include_relative index.md %}
