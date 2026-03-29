@@ -78,6 +78,8 @@ Parameters:
 - **Namespace** - The URL prefix where the API is mounted (e.g. `/api/v1`)
 - **`development:`** - Set to `true` in development to enable class reloading on each request
 
+Apia is compatible with both Rack v2.x and Rack v3.x.
+
 ## Schema Endpoint
 
 When you call `schema` inside the routes block, Apia automatically generates a JSON schema endpoint at `GET /schema` (relative to the API namespace). This schema describes all endpoints, objects, argument sets, enums, and errors in the API.

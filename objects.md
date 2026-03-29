@@ -75,6 +75,24 @@ field :networks, [:string] do
 end
 ```
 
+### `skip_if_null` Option
+
+When `skip_if_null` is set, the field is omitted entirely from the JSON response if its value is nil. Without this option, nullable fields are included with a `null` value.
+
+```ruby
+# Without skip_if_null — response includes "nickname": null
+field :nickname, :string, null: true
+
+# With skip_if_null — field is omitted from response when nil
+field :nickname, :string, null: true, skip_if_null: true
+
+# Using the block DSL form
+field :middle_name, :string do
+  null true
+  skip_if_null true
+end
+```
+
 ### `condition` Option
 
 Conditions control whether a field is included in the response. The block receives the source object and the request.

@@ -95,6 +95,9 @@ field :users, [Objects::User]
 # With custom backend
 field :full_name, :string, backend: -> (user) { "#{user.first_name} #{user.last_name}" }
 
+# Omit field from response entirely when nil (instead of returning null)
+field :nickname, :string, null: true, skip_if_null: true
+
 # With include directive (controls default field inclusion)
 field :organization, Objects::Organization, include: "*,users[user_id,owner]"
 
@@ -171,7 +174,21 @@ scopes "users.read", "users.write"
 
 ### `response_type(type)`
 
-Sets the response content type. Options are `:json` (default) or `:plain`.
+Sets the response content type. Defaults to JSON. Use `Apia::Response::PLAIN` (or the string `'text/plain'`) for plain text responses:
+
+```ruby
+response_type Apia::Response::PLAIN
+```
+
+When using a plain text response type, set the response body directly:
+
+```ruby
+def call
+  response.body = "Hello, world!"
+end
+```
+
+**Note:** Apia also accepts JSON requests with vendor-specific content types (e.g., `application/vnd.docker.distribution.events.v2+json`). Any `application/*+json` content type will be parsed as JSON.
 
 ## Request and Response
 

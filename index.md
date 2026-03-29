@@ -7,7 +7,7 @@ Apia is a Ruby framework for building strongly-typed, self-documenting HTTP APIs
 Add Apia to your Gemfile:
 
 ```ruby
-gem "apia", "~> 3.4"
+gem "apia", "~> 3.9"
 ```
 
 Mount it as Rack middleware in `config/application.rb`:
